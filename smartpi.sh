@@ -1,7 +1,7 @@
 #!/bin/bash 
 
-sleeptime=0.1
-
+sleeptime=0.05
+hostip=192.168.97.249
 get_curl () {
 curl  -s http://192.168.97.249:9246/metrics -w 0.01 | grep -v "HELP go" | grep -v "#" > /ramdisk/smartpitemp.txt
 }
@@ -57,39 +57,39 @@ print_data () {
 write_data () {
     #Write the data to the database
     
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=PVA,phase=L1 value=$PVA_A" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=PVA,phase=L2 value=$PVA_B" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=PVA,phase=L3 value=$PVA_C" >/dev/null 2>&1 -m 0.1
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=PVA,phase=L1 value=$PVA_A" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=PVA,phase=L2 value=$PVA_B" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=PVA,phase=L3 value=$PVA_C" >/dev/null 2>&1 -m 0.01
     
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=PFR,phase=L1 value=$PFR_A" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=PFR,phase=L2 value=$PFR_B" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=PFR,phase=L3 value=$PFR_C" >/dev/null 2>&1 -m 0.1
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=PFR,phase=L1 value=$PFR_A" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=PFR,phase=L2 value=$PFR_B" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=PFR,phase=L3 value=$PFR_C" >/dev/null 2>&1 -m 0.01
     
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=VAR,phase=L1 value=$VAR_A" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=VAR,phase=L2 value=$VAR_B" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=VAR,phase=L3 value=$VAR_C" >/dev/null 2>&1 -m 0.1
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=VAR,phase=L1 value=$VAR_A" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=VAR,phase=L2 value=$VAR_B" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=VAR,phase=L3 value=$VAR_C" >/dev/null 2>&1 -m 0.01
     
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=Angle,phase=L1 value=$A_A" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=Angle,phase=L2 value=$A_B" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=Angle,phase=L3 value=$A_C" >/dev/null 2>&1 -m 0.1
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=Angle,phase=L1 value=$A_A" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=Angle,phase=L2 value=$A_B" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=Angle,phase=L3 value=$A_C" >/dev/null 2>&1 -m 0.01
     
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=volt,phase=L1 value=$V_A" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=volt,phase=L2 value=$V_B" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=volt,phase=L3 value=$V_C" >/dev/null 2>&1 -m 0.1
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=volt,phase=L1 value=$V_A" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=volt,phase=L2 value=$V_B" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=volt,phase=L3 value=$V_C" >/dev/null 2>&1 -m 0.01
 
 
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=freq,phase=L1 value=$f_A" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=freq,phase=L2 value=$f_B" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=freq,phase=L3 value=$f_C" >/dev/null 2>&1 -m 0.1
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=freq,phase=L1 value=$f_A" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=freq,phase=L2 value=$f_B" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=freq,phase=L3 value=$f_C" >/dev/null 2>&1 -m 0.01
 
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=watt,phase=L1 value=$W_A" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=watt,phase=L2 value=$W_B" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=watt,phase=L3 value=$W_C" >/dev/null 2>&1 -m 0.1
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=watt,phase=L1 value=$W_A" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=watt,phase=L2 value=$W_B" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=watt,phase=L3 value=$W_C" >/dev/null 2>&1 -m 0.01
     
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=strom,phase=L1 value=$I_A" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=strom,phase=L2 value=$I_B" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=strom,phase=L3 value=$I_C" >/dev/null 2>&1 -m 0.1
-    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host=192.168.100.9,sensor=strom,phase=N value=$I_N" >/dev/null 2>&1 -m 0.1
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=strom,phase=L1 value=$I_A" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=strom,phase=L2 value=$I_B" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=strom,phase=L3 value=$I_C" >/dev/null 2>&1 -m 0.01
+    curl -s -i -XPOST 'http://127.0.0.1:8086/write?db=smartpi' --data-binary "smartpi,host="$hostip",sensor=strom,phase=N value=$I_N" >/dev/null 2>&1 -m 0.01
 
 }
 
@@ -103,5 +103,3 @@ do
    # print_data
     write_data
 done
-
-
